@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Қаржылық еркіндіктің 8 деңгейі</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #F3F6F1;
+            --dark: #1E2A22;
+            --green: #81A969;
+            --text-secondary: #5C6B60;
+            --placeholder: #9AA79C;
+            --input-bg: #EEF2EA;
+            --white: #FFFFFF;
+            --gold: #B8862B;
+            --level-0: #C5F1B2;
+            --level-1: #ADD59D;
+            --level-2: #95B889;
+            --level-3: #7D9C74;
+            --level-4: #667F60;
+            --level-5: #4E634B;
+            --level-6: #364637;
+            --level-7: #1E2A22;
+        }
+
+        body {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg);
+            color: var(--dark);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ========== SECTIONS ========== */
+        .section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+            position: relative;
+        }
+
+        /* ========== HERO SECTION ========== */
+        #hero {
+            padding-top: 80px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            color: var(--green);
+            font-weight: 600;
+            font-size: 15px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-size: clamp(32px, 5vw, 56px);
+            font-weight: 800;
+            color: var(--dark);
+            text-align: center;
+            line-height: 1.15;
+            margin-bottom: 24px;
+            max-width: 800px;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(16px, 2vw, 22px);
+            color: var(--text-secondary);
+            text-align: center;
+            max-width: 700px;
+            line-height: 1.7;
+            margin-bottom: 50px;
+        }
+
+        /* ========== STAIRCASE ========== */
+        .staircase {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            width: 100%;
+            margin-bottom: 50px;
+        }
+
+        .stair-step {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 20px;
+            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: default;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideIn 0.5s ease forwards;
+            width: 420px;
+            max-width: 100%;
+        }
+
+        .stair-step:hover {
+            transform: scale(1.03);
+            box-shadow: 0 4px 20px rgba(30, 42, 34, 0.08);
+        }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stair-step:nth-child(1) { animation-delay: 0.1s; }
+        .stair-step:nth-child(2) { animation-delay: 0.2s; }
+        .stair-step:nth-child(3) { animation-delay: 0.3s; }
+        .stair-step:nth-child(4) { animation-delay: 0.4s; }
+        .stair-step:nth-child(5) { animation-delay: 0.5s; }
+        .stair-step:nth-child(6) { animation-delay: 0.6s; }
+        .stair-step:nth-child(7) { animation-delay: 0.7s; }
+        .stair-step:nth-child(8) { animation-delay: 0.8s; }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 15px;
+            flex-shrink: 0;
+        }
+
+        .step-label {
+            font-size: 14px;
+            font-weight: 500;
+            text-align: left;
+        }
+
+        .step-bar {
+            flex: 1;
+            height: 3px;
+            border-radius: 2px;
+            opacity: 0.3;
+        }
+
+        /* ========== CTA BUTTON ========== */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: var(--dark);
+            color: var(--bg);
+            font-family: inherit;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            background: #2a3e2e;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(30, 42, 34, 0.2);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-primary svg {
+            transition: transform 0.3s ease;
+        }
+
+        .btn-primary:hover svg {
+            transform: translateX(4px);
+        }
+
+        /* ========== FORM SECTION ========== */
+        #form-section {
+            padding: 80px 20px;
+        }
+
+        .form-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 48px;
+            width: 100%;
+            max-width: 560px;
+            box-shadow: 0 4px 40px rgba(30, 42, 34, 0.06);
+        }
+
+        .form-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--green);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 18px;
+            background: var(--input-bg);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 17px;
+            font-weight: 500;
+            color: var(--dark);
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .form-group input::placeholder {
+            color: var(--placeholder);
+            font-weight: 400;
+        }
+
+        .form-group input:focus {
+            border-color: var(--green);
+            background: var(--white);
+            box-shadow: 0 0 0 4px rgba(129, 169, 105, 0.12);
+        }
+
+        .input-suffix {
+            position: absolute;
+            right: 16px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            pointer-events: none;
+        }
+
+        .form-group input.has-suffix {
+            padding-right: 70px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            margin-top: 12px;
+            padding: 18px;
+            font-size: 18px;
+            border-radius: 14px;
+        }
+
+        /* ========== RESULTS SECTION ========== */
+        #results-section {
+            display: none;
+            padding: 80px 20px;
+        }
+
+        .results-header {
+            font-size: clamp(28px, 4vw, 44px);
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .result-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 48px;
+            width: 100%;
+            max-width: 640px;
+            box-shadow: 0 4px 40px rgba(30, 42, 34, 0.06);
+            text-align: center;
+        }
+
+        .result-level-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            transition: transform 0.5s ease;
+        }
+
+        .result-level-badge.animate {
+            animation: popIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .result-level-name {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 16px;
+        }
+
+        .result-description {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 32px;
+        }
+
+        .result-next-goal {
+            background: var(--input-bg);
+            border-radius: 14px;
+            padding: 20px 24px;
+            text-align: left;
+            margin-bottom: 28px;
+        }
+
+        .result-next-goal .goal-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--green);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .result-next-goal .goal-text {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Result staircase mini */
+        .result-staircase {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin: 28px 0;
+        }
+
+        .result-stair {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            opacity: 0.35;
+        }
+
+        .result-stair.active {
+            opacity: 1;
+            background: var(--input-bg);
+            transform: scale(1.02);
+        }
+
+        .result-stair .rs-num {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+
+        .result-stair .rs-label {
+            font-size: 13px;
+            font-weight: 500;
+            text-align: left;
+        }
+
+        /* ========== METRICS PANEL ========== */
+        .metrics-panel {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 28px;
+            text-align: left;
+        }
+
+        .metric-item {
+            background: var(--input-bg);
+            border-radius: 12px;
+            padding: 16px;
+        }
+
+        .metric-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--placeholder);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .metric-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .metric-value.highlight {
+            color: var(--gold);
+        }
+
+        /* ========== QUOTE ========== */
+        .result-quote {
+            margin-top: 28px;
+            padding: 20px 24px;
+            border-left: 3px solid var(--green);
+            text-align: left;
+        }
+
+        .result-quote p {
+            font-size: 15px;
+            font-style: italic;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* ========== BUTTON SECONDARY ========== */
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+            color: var(--dark);
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 600;
+            padding: 14px 28px;
+            border: 2px solid var(--dark);
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 24px;
+        }
+
+        .btn-secondary:hover {
+            background: var(--dark);
+            color: var(--bg);
+        }
+
+        /* ========== PROGRESS BAR ========== */
+        .progress-container {
+            width: 100%;
+            max-width: 640px;
+            margin-bottom: 40px;
+        }
+
+        .progress-bar-bg {
+            width: 100%;
+            height: 8px;
+            background: var(--input-bg);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+            width: 0%;
+        }
+
+        .progress-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--placeholder);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 640px) {
+            .form-card {
+                padding: 28px 20px;
+            }
+
+            .result-card {
+                padding: 28px 20px;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .metrics-panel {
+                grid-template-columns: 1fr;
+            }
+
+            .staircase {
+                max-width: 100%;
+            }
+        }
+
+        /* ========== SMOOTH SCROLL ========== */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* ========== FADE IN UP ========== */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ========== LOADING ANIMATION ========== */
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(243, 246, 241, 0.92);
+            backdrop-filter: blur(8px);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        .loading-spinner {
+            width: 48px;
+            height: 48px;
+            border: 4px solid var(--input-bg);
+            border-top-color: var(--green);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        /* ========== NUMBER INPUT ARROWS HIDE ========== */
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+
+        /* ========== ERROR STATE ========== */
+        .form-group.error input {
+            border-color: #d9534f;
+            background: #fef2f2;
+        }
+
+        .form-group .error-msg {
+            display: none;
+            font-size: 12px;
+            color: #d9534f;
+            margin-top: 4px;
+        }
+
+        .form-group.error .error-msg {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- LOADING OVERLAY -->
+    <div class="loading-overlay" id="loading">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Деңгейіңізді анықтап жатырмыз...</div>
+    </div>
+
+    <!-- ========== HERO ========== -->
+    <section class="section" id="hero">
+        <div class="hero-badge">ҚАРЖЫЛЫҚ ЕРКІНДІКТІҢ 8 ДЕҢГЕЙІ</div>
+        <h1 class="hero-title">Ақшаңыз сізге қаншалықты<br>еркіндік береді?</h1>
+        <p class="hero-subtitle">
+            Бар болғаны 4 сан жеткілікті: айлық табысыңыз, шығыныңыз, қарызыңыз және жинағыңыз.
+            Осы көрсеткіштерге сүйене отырып, қазіргі қаржылық деңгейіңізді анықтап,
+            келесі қадамыңыз қандай болуы керектігін көрсетеміз.
+        </p>
+
+        <div class="staircase">
+            <div class="stair-step">
+                <div class="step-number" style="background: var(--level-7); color: #fff;">7</div>
+                <div class="step-label">Үлкен шешімдерді еркін қабылдай алу</div>
+            </div>
+            <div class="stair-step">
+                <div class="step-number" style="background: var(--level-6); color: #fff;">6</div>
+                <div class="step-label">Асықпай шешім қабылдай алу</div>
+            </div>
+            <div class="stair-step">
+                <div class="step-number" style="background: var(--level-5); color: #fff;">5</div>
+                <div class="step-label">Табыссыз 6 ай өмір сүре алу</div>
+            </div>
+            <div class="stair-step">
+                <div class="step-number" style="background: var(--level-4); color: #fff;">4</div>
+                <div class="step-label">Үлкен шығынды қарызсыз көтере алу</div>
+            </div>
+            <div class="stair-step">
+                <div class="step-number" style="background: var(--level-3); color: #fff;">3</div>
+                <div class="step-label">Кішкентай проблемаларды шеше алу</div>
+            </div>
+            <div class="stair-step">
+                <div class="step-number" style="background: var(--level-2); color: var(--dark);">2</div>
+                <div class="step-label">Жалақыдан жалақыға өмір сүру</div>
+            </div>
+            <div class="stair-step">
+                <div class="step-number" style="background: var(--level-1); color: var(--dark);">1</div>
+                <div class="step-label">Қарыз өміріңізді басқарады</div>
+            </div>
+            <div class="stair-step">
+                <div class="step-number" style="background: var(--level-0); color: var(--dark);">0</div>
+                <div class="step-label">Толық тәуелділік</div>
+            </div>
+        </div>
+
+        <a href="#form-section" class="btn-primary">
+            Деңгейімді анықтау
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M4 10h12M12 6l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </a>
+    </section>
+
+    <!-- ========== FORM ========== -->
+    <section class="section" id="form-section">
+        <div class="form-card">
+            <div class="form-title">Деректеріңізді енгізіңіз</div>
+
+            <form id="calcForm" novalidate>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Атыңыз</label>
+                        <input type="text" id="name" placeholder="Есіміңіз">
+                    </div>
+                    <div class="form-group">
+                        <label for="age">Жасыңыз</label>
+                        <input type="number" id="age" placeholder="25" min="1" max="120">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="income">Айлық табысыңыз</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="income" class="has-suffix" placeholder="мысалы, 600 000" min="0">
+                        <span class="input-suffix">₸ / ай</span>
+                    </div>
+                    <div class="error-msg">Табыс мөлшерін енгізіңіз</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="expenses">Айлық шығыныңыз</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="expenses" class="has-suffix" placeholder="мысалы, 350 000" min="0">
+                        <span class="input-suffix">₸ / ай</span>
+                    </div>
+                    <div class="error-msg">Шығын мөлшерін енгізіңіз</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="debt">Айлық қарыз төлемдеріңіз</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="debt" class="has-suffix" placeholder="0, егер қарызыңыз жоқ болса" min="0">
+                        <span class="input-suffix">₸ / ай</span>
+                    </div>
+                    <div class="error-msg">Қарыз төлемін енгізіңіз</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="totalDebt">Жалпы қарыз сомасы</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="totalDebt" class="has-suffix" placeholder="0, егер қарызыңыз жоқ болса" min="0">
+                        <span class="input-suffix">₸</span>
+                    </div>
+                    <div class="error-msg">Жалпы қарыз сомасын енгізіңіз</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="savings">Жинағыңыз</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="savings" class="has-suffix" placeholder="мысалы, 400 000" min="0">
+                        <span class="input-suffix">₸</span>
+                    </div>
+                    <div class="error-msg">Жинақ мөлшерін енгізіңіз</div>
+                </div>
+
+                <button type="submit" class="btn-primary btn-submit">
+                    Деңгейімді анықтау
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M4 10h12M12 6l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- ========== RESULTS ========== -->
+    <section class="section" id="results-section">
+        <h2 class="results-header fade-in-up">Сіздің деңгейіңіз:</h2>
+
+        <div class="progress-container fade-in-up" style="animation-delay: 0.15s;">
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progressBar"></div>
+            </div>
+            <div class="progress-labels">
+                <span>0</span>
+                <span>7</span>
+            </div>
+        </div>
+
+        <div class="result-card fade-in-up" style="animation-delay: 0.3s;">
+            <div class="result-level-badge animate" id="resultBadge"></div>
+            <div class="result-level-name" id="resultName"></div>
+
+            <div class="metrics-panel" id="metricsPanel"></div>
+
+            <div class="result-description" id="resultDesc"></div>
+
+            <div class="result-next-goal" id="nextGoalBlock">
+                <div class="goal-label">Келесі мақсат</div>
+                <div class="goal-text" id="nextGoalText"></div>
+            </div>
+
+            <div class="result-staircase" id="resultStaircase"></div>
+
+            <div class="result-quote" id="resultQuote">
+                <p></p>
+            </div>
+
+            <button class="btn-secondary" onclick="resetForm()">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M2 8a6 6 0 1 1 1.76 4.24" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M2 12V8h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Қайта есептеу
+            </button>
+        </div>
+    </section>
+
+    <script>
+        /* ============ LEVEL DATA ============ */
+        const levels = [
+            {
+                num: 0,
+                name: "Толық тәуелділік",
+                color: "#C5F1B2",
+                textColor: "#1E2A22",
+                description: "Сіз қазір өзіңіздің базалық өміріңізді өзіңіз толық қамтамасыз ете алмайсыз. Тамақ, тұратын жер, киім, күнделікті қажеттілік — осының бір бөлігі немесе барлығы басқа адамға тәуелді.",
+                nextGoal: "Өз базалық өміріңді өз табысыңмен жаба алу.",
+                quote: "Сенің өміріңді ұстап тұрған ақша сенің бақылауыңда емес."
+            },
+            {
+                num: 1,
+                name: "Қарыз өміріңізді басқарады",
+                color: "#ADD59D",
+                textColor: "#1E2A22",
+                description: "Табысыңыздың үлкен бөлігі кредитке, рассрочкаға, ипотекаға, қарызға, міндетті төлемдерге кетеді. Жалақы әлі түспей тұрып, оның қайда кететіні белгілі.",
+                nextGoal: "Қарыздың қысымын азайтып, табыстың бір бөлігін қайтадан өз бақылауыңа алу.",
+                quote: "Сен қарызбен оянасың. Қарызбен ұйықтайсың. Болашақ табысыңның үлкен бөлігі алдын ала сатылып қойған."
+            },
+            {
+                num: 2,
+                name: "Жалақыдан жалақыға өмір сүру",
+                color: "#95B889",
+                textColor: "#1E2A22",
+                description: "Жинақ жоқ немесе өте аз. Жалақы келеді — кетеді. Бір ай табыс болмаса — проблема басталады. Телефон сынып қалса — рассрочка, тіс ауырса — қарыз.",
+                nextGoal: "Кішкентай күтпеген шығын енді қарызға кіргізбейтін деңгейге жету.",
+                quote: "«Бірдеңе болып қалмаса екен» — осы деңгейдің негізгі сезімі."
+            },
+            {
+                num: 3,
+                name: "Кішкентай проблемаларды шеше алу",
+                color: "#7D9C74",
+                textColor: "#FFFFFF",
+                description: "Алғашқы еркіндік! Телефон сынды — жөндетесіз. Тіс емдетуге 50-100 мың керек — төлейсіз. Кішкентай проблемалар енді қаржылық апат емес. Бірақ бірнеше ай табыссыз жүре алмайсыз.",
+                nextGoal: "Үлкен күтпеген шығынды да қарызсыз көтеру.",
+                quote: "2-деңгей: «Телефон сынып қалмаса екен.» 3-деңгей: «Сынса — шешемін.»"
+            },
+            {
+                num: 4,
+                name: "Үлкен шығынды қарызсыз көтере алу",
+                color: "#667F60",
+                textColor: "#FFFFFF",
+                description: "Көлікке 200–500 мың жөндеу, үлкен медициналық шығын, отбасында шұғыл жағдай — мұны кредитсіз, рассрочкасыз, біреуден ақша сұрамай жаба аласыз.",
+                nextGoal: "Ақшамен өзіңе уақыт сатып алу — табыссыз 6 ай өмір сүре алатын деңгейге жету.",
+                quote: "Шығынға төзімдісіз, бірақ табыстың тоқтауына әлі төзімді емессіз."
+            },
+            {
+                num: 5,
+                name: "Табыссыз 6 ай өмір сүре алу",
+                color: "#4E634B",
+                textColor: "#FFFFFF",
+                description: "Табыс тоқтаса да шамамен 6 ай өмір салтыңызды қатты өзгертпей жүре аласыз. Жаңа мамандық үйренгіңіз келе ме? Бизнес бастағыңыз келе ме? Ақша алғаш рет сізге уақыт сатып береді.",
+                nextGoal: "Асығыс шешім қабылдамауға мүмкіндік беретін капитал жинау.",
+                quote: "4-деңгей: «Проблема шықса — шеше аламын.» 5-деңгей: «Өзім өзгеріс жасағым келсе — оған уақытым бар.»"
+            },
+            {
+                num: 6,
+                name: "Асықпай шешім қабылдай алу",
+                color: "#364637",
+                textColor: "#FFFFFF",
+                description: "Уақыт қысымынан еркіндік. Жұмыс ұнамай ма — басқасын іздеуге уақыт бар. Клиент ұнамай ма — бас тарта аласыз. Ең маңызды еркіндік — «ЖОҚ» дей алу.",
+                nextGoal: "Үлкен шешімдерді еркін қабылдай алатын капитал деңгейіне жету.",
+                quote: "Капиталдың бір функциясы — саған асықпау құқығын беру."
+            },
+            {
+                num: 7,
+                name: "Үлкен шешімдерді еркін қабылдай алу",
+                color: "#1E2A22",
+                textColor: "#FFFFFF",
+                description: "Үлкен сатып алу немесе үлкен өмірлік шешім сізді қайтадан қаржылық қорқынышқа түсірмейді. Үй сатып алсаңыз да — жинағыңыз қалады, инвестицияңыз жұмысын жалғастырады, өмір салтыңыз бұзылмайды.",
+                nextGoal: null,
+                quote: "Мен шешімді ақша жетпегендіктен емес, өзім қалайтындықтан қабылдаймын."
+            }
+        ];
+
+        /* ============ LEVEL DETERMINATION ============ */
+        function determineLevel(income, expenses, debt, savings, totalDebt) {
+            // Шығын = шығын + айлық қарыз төлемі
+            const totalExpenses = expenses + debt;
+            const debtToIncomeRatio = income > 0 ? debt / income : (debt > 0 ? 1 : 0);
+            const monthsCovered = totalExpenses > 0 ? savings / totalExpenses : (savings > 0 ? 999 : 0);
+
+            // Level 0: Total financial dependency
+            if (income <= 0 || income < totalExpenses * 0.5) {
+                return 0;
+            }
+
+            // Level 1: Debt controls your life
+            if (debtToIncomeRatio >= 0.5 || (debt > 0 && totalExpenses > income * 1.1)) {
+                return 1;
+            }
+
+            // Level 2: Paycheck to paycheck
+            if (monthsCovered < 1) {
+                return 2;
+            }
+
+            // Level 3: Can solve small problems
+            if (monthsCovered < 3) {
+                return 3;
+            }
+
+            // Level 4: Can handle big expenses without debt
+            if (monthsCovered < 6) {
+                return 4;
+            }
+
+            // Level 5: Can live 6 months without income
+            if (monthsCovered < 12) {
+                return 5;
+            }
+
+            // Level 6: Unhurried decision making
+            if (monthsCovered < 24) {
+                return 6;
+            }
+
+            // Level 7: Full freedom for big decisions
+            return 7;
+        }
+
+        /* ============ FORMAT NUMBER ============ */
+        function formatNum(n) {
+            return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+        }
+
+        /* ============ FORM HANDLING ============ */
+        const form = document.getElementById('calcForm');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Clear errors
+            document.querySelectorAll('.form-group').forEach(g => g.classList.remove('error'));
+
+            const income = parseFloat(document.getElementById('income').value) || 0;
+            const expenses = parseFloat(document.getElementById('expenses').value);
+            const debt = parseFloat(document.getElementById('debt').value) || 0;
+            const totalDebt = parseFloat(document.getElementById('totalDebt').value) || 0;
+            const savings = parseFloat(document.getElementById('savings').value) || 0;
+            const name = document.getElementById('name').value.trim();
+
+            // Validate
+            let hasError = false;
+
+            if (isNaN(expenses) || document.getElementById('expenses').value === '') {
+                document.getElementById('expenses').closest('.form-group').classList.add('error');
+                hasError = true;
+            }
+
+            if (hasError) return;
+
+            // Show loading
+            const loading = document.getElementById('loading');
+            loading.classList.add('active');
+
+            setTimeout(() => {
+                const level = determineLevel(income, expenses, debt, savings, totalDebt);
+                showResults(level, { income, expenses, debt, totalDebt, savings, name });
+                loading.classList.remove('active');
+            }, 1200);
+        });
+
+        /* ============ SHOW RESULTS ============ */
+        function showResults(levelNum, data) {
+            const level = levels[levelNum];
+            const resultsSection = document.getElementById('results-section');
+            const formSection = document.getElementById('form-section');
+
+            // Hide form, show results
+            formSection.style.display = 'none';
+            document.getElementById('hero').style.display = 'none';
+            resultsSection.style.display = 'flex';
+
+            // Greeting
+            const header = document.querySelector('.results-header');
+            if (data.name) {
+                header.textContent = `${data.name}, сіздің деңгейіңіз:`;
+            }
+
+            // Badge
+            const badge = document.getElementById('resultBadge');
+            badge.textContent = levelNum;
+            badge.style.background = level.color;
+            badge.style.color = level.textColor;
+
+            // Name
+            document.getElementById('resultName').textContent = level.name;
+
+            // Metrics
+            const totalExpenses = data.expenses + data.debt;
+            const monthsCovered = totalExpenses > 0 ? (data.savings / totalExpenses) : 0;
+            const netCashFlow = data.income - totalExpenses;
+
+            const metricsPanel = document.getElementById('metricsPanel');
+            metricsPanel.innerHTML = `
+                <div class="metric-item">
+                    <div class="metric-label">Ай соңында қалатын ақша</div>
+                    <div class="metric-value ${netCashFlow >= 0 ? '' : 'highlight'}">${netCashFlow >= 0 ? '+' : ''}${formatNum(Math.round(netCashFlow))} ₸</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">Жинақ / Шығын</div>
+                    <div class="metric-value">${monthsCovered.toFixed(1)} ай</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">Жалпы қарыз</div>
+                    <div class="metric-value ${data.totalDebt > 0 ? 'highlight' : ''}">${formatNum(Math.round(data.totalDebt))} ₸</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">Жалпы жинақ</div>
+                    <div class="metric-value">${formatNum(Math.round(data.savings))} ₸</div>
+                </div>
+            `;
+
+            // Description
+            document.getElementById('resultDesc').textContent = level.description;
+
+            // Next goal
+            const nextGoalBlock = document.getElementById('nextGoalBlock');
+            if (level.nextGoal) {
+                nextGoalBlock.style.display = 'block';
+                document.getElementById('nextGoalText').textContent = level.nextGoal;
+            } else {
+                nextGoalBlock.style.display = 'none';
+            }
+
+            // Progress bar
+            const progressBar = document.getElementById('progressBar');
+            const percentage = (levelNum / 7) * 100;
+            progressBar.style.background = level.color;
+            setTimeout(() => {
+                progressBar.style.width = percentage + '%';
+            }, 300);
+
+            // Mini staircase
+            const staircase = document.getElementById('resultStaircase');
+            staircase.innerHTML = '';
+            for (let i = 7; i >= 0; i--) {
+                const l = levels[i];
+                const isActive = i === levelNum;
+                staircase.innerHTML += `
+                    <div class="result-stair ${isActive ? 'active' : ''}">
+                        <div class="rs-num" style="background: ${l.color}; color: ${l.textColor};">${i}</div>
+                        <div class="rs-label" style="${isActive ? 'font-weight: 700;' : ''}">${l.name}</div>
+                    </div>
+                `;
+            }
+
+            // Quote
+            const quoteBlock = document.getElementById('resultQuote');
+            quoteBlock.querySelector('p').textContent = level.quote;
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        /* ============ RESET ============ */
+        function resetForm() {
+            document.getElementById('results-section').style.display = 'none';
+            document.getElementById('hero').style.display = 'flex';
+            document.getElementById('form-section').style.display = 'flex';
+            document.getElementById('progressBar').style.width = '0%';
+            form.reset();
+            document.querySelector('.results-header').textContent = 'Сіздің деңгейіңіз:';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        /* ============ NUMBER FORMATTING IN INPUTS ============ */
+        document.querySelectorAll('input[type="number"]').forEach(input => {
+            if (input.id === 'age') return;
+            input.addEventListener('focus', function() {
+                if (this.value === '0') this.value = '';
+            });
+        });
+    </script>
+</body>
+</html>
